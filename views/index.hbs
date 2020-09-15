@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/msg.js"></script>
+    <title>SiteMinder Email Board</title>
+</head>
+<body>
+   <div id='wrapper'>
+       <div id='nav'>
+           <h4>Send Messages</h4>
+           <ul>
+               <li><a href="/">Home</a></li>
+               <li><a href="/contacts">Contacts</a></li>
+               <li><a href="/sentItems">Sent Items</a></li>
+           </ul>
+       </div>
+       <div class="card">
+            <div class="cardHeader">NEW MESSAGE</div>
+            <form method="POST" action="/send/message">
+                <div class="mailForm">
+                    <div id='error'>
+                        {{#if alertmessage}}
+                            {{alertmessage}}
+                        {{/if}}
+                    </div>
+                    <label for="ToEmail">Insert emails seperated by a comma</label>
+                    <div class="buttonHolder">
+                        <button class='buttonCc' type="button" onclick="showCC();">Cc</button>
+                        <button class='buttonCc' type="button" onclick="showBcc();">Bcc</button>
+                    </div>
+                    <input type='text' name='ToEmail' id='ToEmail' placeholder="Recipients" value="{{ToEmail}}">
+                </div>
+                <div class="mailForm" id="CcDiv">
+                    <input type='text' name='ToCc' id='ToCc' placeholder="Cc" value="{{ToCc}}">
+                </div>
+                <div class="mailForm" id="BccDiv">
+                    <input type='text' name='ToBcc' id='ToBcc' placeholder="Bcc" value="{{ToBcc}}">
+                </div>
+                <div class="mailForm">
+                    <input name='subject' id='subject' placeholder="Subject" value="{{subject}}">
+                </div>
+                <div class="mailForm">
+                    <textarea name='message' id='message' rows="10">{{message}}</textarea>
+                </div>
+                <p><button class="buttonSend">SEND</button></p>
+            </form>
+            
+       </div>
+       
+   </div>
+</body>
+</html>

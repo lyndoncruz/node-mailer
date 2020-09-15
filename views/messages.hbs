@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>SiteMinder:Messages</title>
+</head>
+<body>
+    <div id='wrapper'>
+       <div id='nav'>
+           <h4>Send Items</h4>
+           <ul>
+               <li><a href="/">Home</a></li>
+               <li><a href="/contacts">Contacts</a></li>
+               <li><a href="/sentItems">Sent Items</a></li>
+           </ul>
+       </div>
+       <table id="contacts">
+                <tr>
+                    <th>Email</th>
+                    <th>Subject</th>
+                    <th>Status</th>
+                </tr>
+                {{#each messageLists}}
+                <tr>
+                    <td>{{this.toEmail}}</td>
+                    <td>{{this.subject}}</td>
+                    <td>{{this.status}}</td>
+                </tr>
+                {{/each}}
+                
+            </table>
+   </div>
+</body>
+</html>

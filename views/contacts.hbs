@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>SiteMinder:Messages</title>
+</head>
+<body>
+    <div id='wrapper'>
+       <div id='nav'>
+           <h4>Contact Lists</h4>
+           <ul>
+               <li><a href="/">Home</a></li>
+               <li><a href="/contacts">Contacts</a></li>
+               <li><a href="/sentItems">Sent Items</a></li>
+           </ul>
+       </div>
+       <div class="card">
+            <div class="cardHeader">NEW CONTACT</div>
+            <form method="POST" action="/saveContacts/contacts">
+                <div class="mailForm">
+                    <div id='error'>
+                        {{#if alertmessage}}
+                            {{alertmessage}}
+                        {{/if}}
+                    </div>
+                    <input type='text' name='name' id='name' placeholder="Name" value={{name}}>
+                </div>
+                <div class="mailForm">
+                    <input type='text' name='email' id='email' placeholder="Email Address" value={{email}}>
+                </div>
+                <p><button class="buttonSend">SAVE</button></p>
+            </form>
+
+            <table id="contacts">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+                {{#each contacts}}
+                <tr>
+                    <td>{{this.name}}</td>
+                    <td>{{this.email}}</td>
+                </tr>
+                {{/each}}
+                
+            </table>
+            
+       </div>
+   </div>
+</body>
+</html>
