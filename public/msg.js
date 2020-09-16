@@ -15,13 +15,7 @@ $(document).ready(function(){
        $(this).attr("placeholder", "Type your message here");
     }
     });
-    // prevent submit when enter
-    $(window).keydown(function(event){
-        if(event.keyCode == 13) {
-          event.preventDefault();
-        }
-      });
-
+    
     //check if emails are valid
     var inputTo = $('#ToEmail');
     var inputCc = $('#ToCc');

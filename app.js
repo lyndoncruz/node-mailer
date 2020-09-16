@@ -34,6 +34,6 @@ app.use('/saveContacts', require('./routes/contacts'))
 const db = contactmysqlConnect.mysqlconnect()
 
 
-app.listen("5000", () => {
-    console.log("Server Started on PORT 5000")
+app.listen("8000", () => {
+    console.log("Server Started on PORT 8000")
 })

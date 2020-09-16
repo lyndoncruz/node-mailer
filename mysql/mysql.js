@@ -3,18 +3,12 @@ const mysql = require("mysql")
 const db = mysql.createConnection({
     host: process.env.DATABASE_HOST,
     user: process.env.DATABASE_USER,
-    password: process.env.PASSWORD,
+    password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE
 
 })
+db.connect()
 exports.mysqlconnect = (mydb)=>{
-    db.connect( (error) =>{
-        if(error){
-            console.log(error)
-        }else{
-            console.log("MySql connected...")
-        }
-    })
     return db
 }
 

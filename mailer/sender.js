@@ -6,6 +6,7 @@ const db = contactmysqlConnect.mysqlconnect()
 //sendgrid mailer
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+//sgMail.setApiKey(process.env.SENDGRID_APIKEY);
 
 //mailgun mailer
 const mailgun = require("mailgun-js");
@@ -13,13 +14,14 @@ const DOMAIN =  process.env.MAILGUN_DOMAIN
 const APIKEY = process.env.MAILGUN_APIKEY
 
 const mg = mailgun({apiKey: APIKEY, domain: DOMAIN});
+//we can replace from during production
 module.exports = {
     sendGrid: function (ToEmail, ToCc, ToBcc, subject, message, callback) {
       const msg = {
         to: ToEmail,
         cc: ToCc,
         bcc: ToBcc,
-        from: 'lyndon@shoephoric.com',
+        from: 'lyndon@geeksmnl.com',
         subject: subject,
         text: message,
       };
@@ -27,10 +29,11 @@ module.exports = {
 
       sgMail.send(msg, (err, result) =>{
               if (err){
-              console.log(result)
-              return callback("error")
+              console.log(err)
+              return callback(err)
               }
               else{
+                console.log(result)
                 return callback("Message Sent via Send Grid")
               }
             });
@@ -46,7 +49,7 @@ module.exports = {
         mg.messages().send(data, function (error, body) {
             if(error){
                 
-                return callback("Failed via Mail Gun")
+                return callback(error)
             }else{
                 
                 return callback("Sent via Mail Gun")
@@ -54,6 +57,11 @@ module.exports = {
         });
     },
     mailSentItems: function(ToEmail, ToCc, ToBcc, subject, message,status){
-        db.query('INSERT INTO sentMessages SET ?',{toEmail: ToEmail, toCc: ToCc, toBcc: ToBcc, subject: subject, message: message, status: status})
+        //convert array to string
+        const to = ToEmail.toString()
+        const cc = ToCc.toString()
+        const bcc = ToBcc.toString()
+        //insert to db
+        db.query('INSERT INTO sentMessages SET ?',{toEmail: to, toCc: cc, toBcc: bcc, subject: subject, message: message, status: status})
     }
   };
