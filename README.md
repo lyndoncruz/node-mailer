@@ -14,5 +14,5 @@ Install dependencies npm init
 2. MySQL for database 
 3. HandleBars/hbs template for html
 4. dotenv used to create sensitive information like password to keep protected.
-5. server run on port 8000
+5. app listen on port 8000
 
